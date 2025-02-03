@@ -310,6 +310,15 @@ h1,
     color:#464646;
     
 }
+.hcustom_2{
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 42px;
+  letter-spacing: 0.02em;
+  font-family: Poppins, sans-serif;
+  color:#464646;
+  
+}
 
 @media only screen and (min-width: 750px) {
   h1,
@@ -330,6 +339,9 @@ h2,
   }
   .hcustom{
     font-size: 120px;
+  }
+  .hcustom_2{
+    font-size: 40px;
   }
 }
 

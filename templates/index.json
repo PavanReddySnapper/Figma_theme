@@ -27,19 +27,19 @@
       }
     },
     "collections_list": {
-      "type": "main-collection-list",
+      "type": "custom-collections",
+      "custom_css": [
+        ".title {margin: 60px auto;}"
+      ],
       "settings": {
-        "title": "COLLECTION",
+        "title": "COLLECTIONS",
+        "sort": "alphabetical",
+        "heading_alignment": "center",
         "heading_size": "hcustom",
+        "heading_size_2": "hcustom_2",
         "image_ratio": "square",
         "columns_desktop": 3,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "heading_alignment": "center",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "columns_mobile": "1"
       }
     },
     "collections_slider": {
@@ -67,7 +67,7 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
+        "padding_top": 60,
         "padding_bottom": 36
       }
     }
