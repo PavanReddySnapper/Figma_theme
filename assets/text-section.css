@@ -1,0 +1,125 @@
+
+  
+  /* Background styles */
+  .text-section {
+      padding:30px;
+      position: relative; /* Allows precise positioning */
+      background-image: url('{{ 'background-image.png' | asset_url }}');
+      background-size: 2635px 2565px; /* Exact dimensions */
+      background-repeat: no-repeat;
+      background-position: -1605px 600px; /* Aligns the image */
+      background-color: #D4D3CE; /* Base background color */
+      width:100%;
+      height: 1850px;
+      gap: 0px;
+      opacity: 1; /* Make sure the image is visible */
+      overflow: hidden; /* Prevents extra overflow */
+  }
+
+  /* Optional: Add a semi-transparent overlay to reduce image exposure */
+  .text-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color:rgb(211, 210, 205); /* Background color overlay */
+      opacity: 0.5; /* Adjust this to control how much of the image is visible */
+      z-index: 1;
+  }
+  
+  /* Ensuring text and images appear above overlay */
+  .text, .demo-pictures {
+      position: relative;
+      z-index: 2;
+      color: black;
+  }
+  /* Styling #top-text */
+  #top-text {
+      position: absolute;
+      width: 1164px;
+      height: 309px;
+      top: 100px;
+      left: 398px;
+      gap: 0px;
+      opacity: 0.7;
+      font-family: Poppins; /* Applied Poppins font */
+      font-size: 97px; /* Set font size */
+      font-style: italic; /* Set italic style */
+      font-weight: 700; /* Set font weight */
+      line-height: 102.82px; /* Adjust line height */
+      letter-spacing: 0.02em; /* Adjust letter spacing */
+      text-align: center; /* Center-align text */
+      text-underline-position: from-font; /* Underline from font */
+      text-decoration-skip-ink: none; /* Ensures text decoration is skipped */
+      color: black; /* Set text color */
+  }
+
+  #bottom-text {
+      position: absolute;
+      width: 1313px;
+      height: 309px;
+      top: 420px; /* Adjust placement */
+      left: 331px;
+      gap: 0px;
+      opacity: 0.7;
+      font-family: Poppins;
+      font-size: 97px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 102.82px;
+      letter-spacing: 0.02em;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color:#6B6B68;
+  }
+  /* Styling Image 1 */
+  #img-1 img {
+      position: absolute;
+      width: 567px;
+      height: 858px;
+      top: 909px;
+      left: 80px;
+      gap: 0px;
+      border-radius: 20px 0px 0px 0px;
+      opacity: 1;
+      object-fit: cover;
+  }
+
+  /* Styling Image 2 */
+  #img-2 img {
+      position: absolute;
+      width: 566px;
+      height: 858px;
+      top: 909px;
+      left: 677px;
+      gap: 0px;
+      border-radius: 20px 0px 0px 0px;
+      opacity: 1;
+      object-fit: cover;
+      box-shadow: 0px 4px 32px 0px #D6CCB6;
+
+  }
+
+  /* Styling Image 3 */
+  #img-3 img {
+      position: absolute;
+      width: 567px;
+      height: 858px;
+      top: 909px;
+      left: 1273px;
+      gap: 0px;
+      border-radius: 20px 0px 0px 0px;
+      opacity: 1;
+      object-fit: cover;
+      box-shadow: 0px 4px 32px 0px #D6CCB6;
+
+  }
+
+  /* Ensure images don't break layout */
+  .demo-pictures img {
+      max-width: 100%;
+      height: auto;
+  }

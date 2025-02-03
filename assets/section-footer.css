@@ -10,7 +10,51 @@
   padding-bottom: 5rem;
   display: block;
 }
+.footer-container{
+  margin: 0 50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  border-bottom: 1px solid #747474;
+}
+.footer-links{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+}
 
+.company-links,.faq-links, .help-links{
+  display:flex;
+  flex-direction: column;
+  align-items:flex-start;
+  justify-content:space-around;
+}
+
+.company-links a,.faq-links a, .help-links a{
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.company-links h3,.faq-links h3, .help-links h3{
+   color:#747474;
+   font-size: 32px;
+   font-weight: 600;
+   line-height: 38px;
+   margin:10px 0 20px 0;
+}
+.footer-logo{
+  display: flex;
+  align-items: center;
+}
+
+.footer-bottom
+{
+  margin: 0 160px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 @media screen and (max-width: 749px) {
   .footer .grid {
     display: block;
@@ -31,6 +75,22 @@
     padding-left: calc(4rem / var(--font-body-scale));
     padding-right: calc(4rem / var(--font-body-scale));
   }
+}
+
+.footer-social-links{
+  display: flex;
+  justify-content: flex-end;
+  gap:20px;
+}
+.footer-social-links a{
+  height:36px;
+  width:94px;
+  text-decoration: none;
+  color:#a3a2a2;
+  border: 1px solid #a3a2a2;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 100px;
 }
 
 @media screen and (min-width: 750px) {

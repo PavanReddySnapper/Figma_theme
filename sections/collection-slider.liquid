@@ -1,0 +1,69 @@
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      {% for product in collections[section.settings.collection].products %}
+        <div class="swiper-slide">
+          <div class="product-card-1">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+            </a>
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.price | money }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  {% style %}
+    .swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+
+.swiper-slide {
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card-1 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+  {% endstyle %}
+
+{%  schema %}
+{
+  "name":"collection-slider",
+  "settings": [
+    {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image",
+        "info": "Upload an image to use as the background for this section."
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Choose a collection"
+      },
+  ],
+  "presets": [
+    {
+     "name":"collection-slider"
+    }
+  ]
+}
+{%  endschema %}

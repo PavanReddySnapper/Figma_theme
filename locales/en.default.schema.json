@@ -425,6 +425,9 @@
         },
         "options__5": {
           "label": "Extra extra large"
+        },
+        "options__6": {
+          "label": "Custom Size"
         }
       },
       "image_shape": {

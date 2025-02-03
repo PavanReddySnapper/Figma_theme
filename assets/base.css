@@ -75,7 +75,9 @@
 }
 
 /* base */
-
+.text-section{
+  background-image: ;
+}
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
@@ -126,6 +128,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 990px) {
   .header:not(.drawer-menu).page-width {
+    max-width: 100%;
     padding-left: 5rem;
     padding-right: 5rem;
   }
@@ -257,7 +260,7 @@ h5,
 .h2,
 .h3,
 .h4,
-.h5 {
+.h5{
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
@@ -298,6 +301,15 @@ h1,
   font-size: calc(var(--font-heading-scale) * 3rem);
 }
 
+.hcustom{
+    font-size: 120px;
+    font-weight: 900;
+    line-height: 120px;
+    letter-spacing: 0.02em;
+    font-family: Poppins, sans-serif;
+    color:#464646;
+}
+
 @media only screen and (min-width: 750px) {
   h1,
   .h1 {
@@ -314,6 +326,9 @@ h2,
   h2,
   .h2 {
     font-size: calc(var(--font-heading-scale) * 2.4rem);
+  }
+  .hcustom{
+    font-size: 120px;
   }
 }
 
@@ -710,6 +725,10 @@ summary::-webkit-details-marker {
   Focus ring - default (with offset)
 */
 
+*{
+  box-sizing: border-box;
+}
+
 *:focus {
   outline: 0;
   box-shadow: none;
@@ -805,6 +824,7 @@ summary::-webkit-details-marker {
 
 @media screen and (min-width: 750px) {
   .title-wrapper--self-padded-mobile {
+   
     padding-left: 0;
     padding-right: 0;
   }
