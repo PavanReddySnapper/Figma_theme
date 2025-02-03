@@ -1,4 +1,29 @@
 
+
+
+<div class="text-section">
+    <div class="overlay"></div> <!-- Overlay for reducing exposure -->
+    <div class="text">
+       <div id="top-text">
+        {{ section.settings.button_label_1 }}
+       </div>
+       <div id="bottom-text">
+        {{ section.settings.button_label_2 }}
+       </div>
+    </div>
+    <div class="demo-pictures">
+        <div id="img-1">
+            <img src="{{ section.settings.image_1 | image_url }}" alt="Image 1">
+        </div>
+        <div id="img-2">
+            <img src="{{ section.settings.image_2 | image_url }}" alt="Image 2">
+        </div>
+        <div id="img-3">
+            <img src="{{ section.settings.image_3 | image_url }}" alt="Image 3">
+        </div>
+    </div>
+</div>
+
 {% style %}
   
   /* Background styles */
@@ -42,7 +67,7 @@
       width: 1164px;
       height: 309px;
       top: 100px;
-      left: 398px;
+      left: 518px;
       gap: 0px;
       opacity: 0.7;
       font-family: Poppins; /* Applied Poppins font */
@@ -62,7 +87,7 @@
       width: 1313px;
       height: 309px;
       top: 420px; /* Adjust placement */
-      left: 331px;
+      left:451px;
       gap: 0px;
       opacity: 0.7;
       font-family: Poppins;
@@ -82,7 +107,7 @@
       width: 567px;
       height: 858px;
       top: 909px;
-      left: 80px;
+      left: 180px;
       gap: 0px;
       border-radius: 20px 0px 0px 0px;
       opacity: 1;
@@ -95,7 +120,7 @@
       width: 566px;
       height: 858px;
       top: 909px;
-      left: 677px;
+      left: 827px;
       gap: 0px;
       border-radius: 20px 0px 0px 0px;
       opacity: 1;
@@ -110,7 +135,7 @@
       width: 567px;
       height: 858px;
       top: 909px;
-      left: 1273px;
+      left: 1473px;
       gap: 0px;
       border-radius: 20px 0px 0px 0px;
       opacity: 1;
@@ -163,31 +188,6 @@
     }
 }
 {% endstyle %}
-
-
-<div class="text-section">
-    <div class="overlay"></div> <!-- Overlay for reducing exposure -->
-    <div class="text">
-       <div id="top-text">
-        {{ section.settings.button_label_1 }}
-       </div>
-       <div id="bottom-text">
-        {{ section.settings.button_label_2 }}
-       </div>
-    </div>
-    <div class="demo-pictures">
-        <div id="img-1">
-            <img src="{{ section.settings.image_1 | image_url }}" alt="Image 1">
-        </div>
-        <div id="img-2">
-            <img src="{{ section.settings.image_2 | image_url }}" alt="Image 2">
-        </div>
-        <div id="img-3">
-            <img src="{{ section.settings.image_3 | image_url }}" alt="Image 3">
-        </div>
-    </div>
-</div>
-
 
 
 {%  schema %}

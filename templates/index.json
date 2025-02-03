@@ -12,27 +12,65 @@
     "video_RQ8cnh": {
       "type": "video",
       "settings": {
-        
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
       }
     },
     "custom": {
       "type": "text-section",
       "settings": {
-        
+        "background_image": "shopify://shop_images/background-image_8ac9d7c6-f802-4d80-9b86-83a43fe8be27.png",
+        "image_1": "shopify://shop_images/text-section-img1.jpg",
+        "image_2": "shopify://shop_images/text-section-img2.jpg",
+        "image_3": "shopify://shop_images/t.jpg",
+        "button_label_1": "Your finger prints<br> are unique t<span style=\"color:grey\">o you, <br>and so is your style. </span>",
+        "button_label_2": "<span style=\"color:grey\">Opposable brings <br>unapologetic designs. <br>Bold, Fresh and Limited.</span>"
       }
     },
     "collections_list": {
-      "type": "collection-list",
+      "type": "main-collection-list",
       "settings": {
-        
+        "title": "COLLECTION",
+        "heading_size": "hcustom",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "heading_alignment": "center",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "collections_slider": {
       "type": "featured-custom-collection",
       "settings": {
-        
+        "title": "FEATURED",
+        "heading_alignment": "center",
+        "heading_size": "hcustom",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "anatomy",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
-    },
+    }
   },
   "order": [
     "video_RQ8cnh",

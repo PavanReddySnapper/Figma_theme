@@ -2,7 +2,7 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
 <div class="page-width">
-  <h1 class="title title--primary {{ section.settings.heading_alignment }} inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <h1 style="text-align: {{ section.settings.heading_alignment }};" class="title title--primary {{ section.settings.heading_alignment }} inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid
@@ -36,11 +36,8 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
-          {% render 'card-collection',
-            card_collection: collection,
-            media_aspect_ratio: section.settings.image_ratio,
-            columns: 2
-          %}
+          {{ collection.name }}
+          {{ collection.featured_image }}
         </li>
       {%- endfor -%}
     </ul>
