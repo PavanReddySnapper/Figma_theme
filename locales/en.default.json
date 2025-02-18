@@ -49,7 +49,7 @@
       "reset": "Clear search term"
     },
     "cart": {
-      "view": "View cart ({{ count }})",
+      "view": "CART ({{ count }})",
       "view_empty_cart": "View cart",
       "item_added": "Item added to your cart"
     },

@@ -1,12 +1,11 @@
-{% comment %}
+{%- comment -%}
   Renders product variant options
 
   Accepts:
   - product: {Object} product object.
   - option: {Object} current product_option object.
   - block: {Object} block object.
-  - picker_type: {String} type of picker to dispay
-
+  - picker_type: {String} type of picker to display
 
   Usage:
   {% render 'product-variant-options',
@@ -15,7 +14,7 @@
     block: block
     picker_type: picker_type
   %}
-{% endcomment %}
+{%- endcomment -%}
 {%- liquid
   assign product_form_id = 'product-form-' | append: section.id
 -%}
@@ -23,15 +22,34 @@
 {%- for value in option.values -%}
   {%- liquid
     assign swatch_focal_point = null
-    if value.swatch.image
-      assign image_url = value.swatch.image | image_url: width: 50
-      assign swatch_value = 'url(' | append: image_url | append: ')'
-      assign swatch_focal_point = value.swatch.image.presentation.focal_point
-    elsif value.swatch.color
-      assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
-    else
-      assign swatch_value = null
-    endif
+    assign swatch_value = null
+
+    # Check if the variant name is a color (e.g., "Blue")
+    assign variant_color = value | downcase
+    assign color_map = "red:#ff0000,blue:#0000ff,green:#00ff00,yellow:#ffff00,black:#000000,white:#ffffff" | split: ','
+    assign color_found = false
+
+    # Map variant name to a color code
+    for color in color_map
+      assign color_name = color | split: ':' | first
+      assign color_code = color | split: ':' | last
+      if variant_color == color_name
+        assign swatch_value = color_code
+        assign color_found = true
+        break
+      endif
+    endfor
+
+    # If no color is found, use the default swatch logic
+    unless color_found
+      if value.swatch.image
+        assign image_url = value.swatch.image | image_url: width: 50
+        assign swatch_value = 'url(' | append: image_url | append: ')'
+        assign swatch_focal_point = value.swatch.image.presentation.focal_point
+      elsif value.swatch.color
+        assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+      endif
+    endunless
 
     assign option_disabled = true
     if value.available
@@ -68,7 +86,7 @@
       id: input_id,
       name: input_name,
       value: value | escape,
-      swatch: value.swatch,
+      swatch: swatch_value,
       product_form_id: product_form_id,
       checked: value.selected,
       visually_disabled: option_disabled,
@@ -92,7 +110,11 @@
       {{ input_dataset }}
     >
     <label for="{{ input_id }}">
-      {{ value -}}
+      {% if swatch_value %}
+        <span class="color-swatch" style="background-color: {{ swatch_value }};"></span>
+      {% else %}
+        {{ value -}}
+      {% endif %}
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}

@@ -14,7 +14,7 @@
 
 
 <style>
-  header-drawer {
+  .header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
   }
@@ -71,21 +71,17 @@
       padding-top: 0.5rem;
     }
   }
+  
+    
+    
+  
 </style>
 
 {%- style -%}
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
-  .header__submenu {
-  display: none;
-  position: absolute;
-  background: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 10px;
-  list-style: none;
-}
+ 
 
 details[open] .header__submenu {
   display: block;
@@ -166,12 +162,20 @@ details[open] .header__submenu {
     if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
       assign social_links = true
     endif
+    # TRANSPARENT HEADER
+    assign transparent_templates = section.settings.transparent_header_templates | remove: ' ' | split: ','
+    assign transparent_header = false
+
+    if transparent_templates contains template
+      assign transparent_header = true
+    endif
+    
 
     if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
       assign localization_forms = true
     endif
   -%}
-  <header class="header {% if template.name=='index' %}template-header{%  else %}temlate-header-2{% endif %} header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header{% if transparent_header %} header--is-transparent{% endif %} {% if template.name=='index' %}template-header{%  else %}temlate-header-2{% endif %} header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -458,6 +462,7 @@ details[open] .header__submenu {
   </script>
 {%- endif -%}
 
+
 {% schema %}
 {
   "name": "t:sections.header.name",
@@ -488,6 +493,13 @@ details[open] .header__submenu {
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "textarea",
+      "id": "transparent_header_templates",
+      "label": "Transparent Header Templates",
+      "info": "Enter a comma separated list of templates where the header will be transparent. eg. index, collection, search. The header will remain transparent until the user scrolls down.",
+      "placeholder": "index, collection, search etc."
     },
     {
       "type": "link_list",
