@@ -1,3 +1,5 @@
+
+
 {%- assign image_block = section.blocks | where: 'type', 'image' | first -%}
 {% style %}
    .footer{
@@ -7,8 +9,8 @@
     color:#ffffff;
    }
    .footer-grid{
-     display:grid;
-     grid-template-columns:1fr;
+     display:flex;
+     flex-direction:column;
     }
 
     .footer-top{
@@ -50,6 +52,10 @@
       flex-direction:column;
       justify-content:space-between;
     }
+
+    .footer-socials a{
+      padding-bottom:5px;text-align: left;
+    }
    .footer-menu{
      display:flex;
      flex-direction:column;
@@ -68,20 +74,101 @@
    }
 
    .footer-text{
-    font-family: Poppins;
-font-weight: 400;
-font-size: 14px;
-line-height: 16.8px;
-letter-spacing: 0%;
-text-align: center;
+    font-family: Assistant, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: 0%;
+    text-align: center;
+   }
+   .footer-text h3{
+      margin:0px 30px;
+      padding:20px 0px;
+      border-top:3px solid rgb(95, 95, 95);
+      text-align:center;
+      color:white
+    }
+   @media screen and (min-width: 600px)
+   {
+    .footer-grid{
+     display:flex;
+     flex-direction:row-reverse;
+    }
+    .footer-bottom{
+      flex:1;
+      flex-wrap:wrap;
+    }
+   
+    .footer-top {
+        display: flex;
+        flex:1;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
+    .footer-menu--menu{
+        
+        padding-right:50px;
+        padding-top:20px;
+    }
+
+    /* Ensuring social links block appears below menu blocks */
+    .footer-menu--social_media {
+       position:relative;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-left:100px;
+        border-top:3px solid rgb(95, 95, 95);
+        margin-right:30px;
+    }
+
+    .footer-menu--social_media h3
+    {
+      display:none;
+    }
+
+    /* Display social media links in a row */
+    .footer-socials {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        width:100%;
+        justify-content:flex-end;
+        
+        /* position:absolute;
+        right:20px;
+        top:10px; */
+    }
+    .footer-socials a{
+      border:2px solid white;
+      border-radius:20px;
+      padding:5px 10px;
+      margin-right:15px;
+    }
+    .footer-logo{
+      margin:0px;
+    }
+    .footer-logo img{
+      background-size:cover;
+    }
+
+    .footer-text h3{
+      margin:0px;
+      text-align:left;
+      margin-left:30px;
+    }
    }
 {% endstyle %}
 <footer
   class="footer{% if image_block %} footer--has-image{% endif %}"
   data-section-id="{{ section.id }}"
   data-section-type="footer"
+  
 >
+  
   <div class="footer-grid">
     <div class="footer-top">
       {%- for block in section.blocks -%}
@@ -114,13 +201,16 @@ text-align: center;
           {%- elsif block.type == 'social_media' -%}
             <div class="footer-socials" style="margin-top:18px">
               {% if block.settings.facebook_url != blank %}
-                <a style="padding-bottom:5px;text-align: left;" href="{{ block.settings.facebook_url }}" target="_blank">FACEBOOK</a>
+                <a href="{{ block.settings.facebook_url }}" target="_blank">FACEBOOK</a>
               {% endif %}
               {% if block.settings.twitter_url != blank %}
-                <a style="padding-bottom:5px;text-align: left;" href="{{ block.settings.twitter_url }}" target="_blank">TWITTER</a>
+                <a href="{{ block.settings.twitter_url }}" target="_blank">TWITTER</a>
               {% endif %}
               {% if block.settings.instagram_url != blank %}
-                <a style="padding-bottom:5px;text-align:left" href="{{ block.settings.instagram_url }}" target="_blank">INSTAGRAM</a>
+                <a href="{{ block.settings.instagram_url }}" target="_blank">INSTAGRAM</a>
+              {% endif %}
+              {% if block.settings.linkedin_url != blank %}
+                <a href="{{ block.settings.linkedin_url }}" target="_blank">LINKEDIN</a>
               {% endif %}
             </div>
           {%- endif -%}
@@ -143,22 +233,37 @@ text-align: center;
           endcase
         -%}
         {%- if block.type == 'image' -%}
-        <div class="footer-logo">
+        <div class="footer-logo" style="height: 189px;">
           {% if block.settings.image != blank %}
-            <img  src="{{ block.settings.image | img_url: '500x' }}" alt="opposable logo">
+            <img  src="{{ block.settings.image | img_url: '1000x' }}" alt="opposable logo">
           {% endif %}
         </div>
         {% elsif block.type=='text' %}
         
         <div class="footer-text">
-          <h3 style="margin:0px 30px;padding:20px 0px;border-top:3px solid #464646;text-align:center;color:white">{{ block.settings.footer_text }}</h3>
+          <h3>{{ block.settings.footer_text }}</h3>
         </div>
         {% endif %}
       {% endfor %}
     </div>
   </div>
 </footer>
+<script>
+  
+  function adjustFooterLogoHeight() {
+    const menu = document.querySelector('.footer-menu--menu');
+    const logo = document.querySelector('.footer-logo');
 
+    if (menu && logo) {
+        logo.style.height = `${menu.offsetHeight}px`;
+    }
+}
+
+// Run the function after the page loads
+window.addEventListener('load', adjustFooterLogoHeight);
+window.addEventListener('resize', adjustFooterLogoHeight);
+
+  </script>
 {% schema %}
   {
     "name": "Footer",
@@ -245,6 +350,11 @@ text-align: center;
             "type": "url",
             "id": "instagram_url",
             "label": "Instagram URL"
+          },
+          {
+            "type": "url",
+            "id": "linkedin_url",
+            "label": "Linkedin URL"
           }
         ]
       }

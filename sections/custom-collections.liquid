@@ -1,9 +1,18 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-
+{%  style %}
+  @media screen and (max-width:600px){
+    .title{
+      width:100%;
+      font-size:30px;
+      margin:0px !important;
+      text-align:center;
+    }
+  }
+{% endstyle %}
 <div class="page-width">
-  <h1 style="text-align: {{ section.settings.heading_alignment }};" class="title title--primary {{ section.settings.heading_size }} inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ section.settings.title | upcase }}
+  <h1 style="text-align: {{ section.settings.heading_alignment }};" class="{{ section.settings.heading_size }} title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {{ section.settings.title }}
   </h1>
   {%- liquid
     case section.settings.sort
@@ -27,7 +36,7 @@
     <ul
       class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
-      style="display:flex;width:100%;justify-content:space-around;"
+      style="justify-content:center;gap:15px"
     >
       {%- for collection in collections limit:2 -%}
         <li
@@ -37,7 +46,7 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
-          {% render 'custom-card-collections',
+          {% render 'card-collection',
             card_collection: collection,
             media_aspect_ratio: section.settings.image_ratio,
             columns: 3
@@ -46,6 +55,13 @@
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}
+    <div style="text-align: center; margin: 50px auto;">
+      <a href="/collections" style="padding: 10px 30px; background-color: rgb(var(--color-background)); color: #000; text-decoration: none; border:2px solid black; border-radius: 10px;">
+        View All    <svg width="8" height="10" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.70637 6.29363C7.89384 6.48116 7.99915 6.73547 7.99915 7.00063C7.99915 7.2658 7.89384 7.52011 7.70637 7.70763L2.04937 13.3646C1.95712 13.4601 1.84678 13.5363 1.72477 13.5887C1.60277 13.6411 1.47155 13.6687 1.33877 13.6699C1.20599 13.671 1.07431 13.6457 0.951413 13.5955C0.828516 13.5452 0.716864 13.4709 0.622971 13.377C0.529078 13.2831 0.454825 13.1715 0.404544 13.0486C0.354264 12.9257 0.328962 12.794 0.330116 12.6612C0.33127 12.5285 0.358856 12.3972 0.411265 12.2752C0.463674 12.1532 0.539856 12.0429 0.635366 11.9506L5.58537 7.00063L0.635366 2.05063C0.453207 1.86203 0.352413 1.60943 0.354692 1.34723C0.35697 1.08504 0.462139 0.834223 0.647547 0.648815C0.832955 0.463407 1.08377 0.358237 1.34596 0.355959C1.60816 0.353681 1.86076 0.454474 2.04937 0.636633L7.70637 6.29363Z" fill="#0D0D0D"/>
+          </svg> 
+      </a>
+    </div>
   {%- endpaginate -%}
 </div>
 {% schema %}
@@ -92,89 +108,61 @@
       "label": "t:sections.main-list-collections.settings.sort.label"
     },
     {
-        "type": "select",
-        "id": "heading_alignment",
-        "label": "t:sections.collapsible_content.settings.heading_alignment.label",
-        "options": [
-          {
-            "value": "left",
-            "label": "t:sections.collapsible_content.settings.heading_alignment.options__1.label"
-          },
-          {
-            "value": "center",
-            "label": "t:sections.collapsible_content.settings.heading_alignment.options__2.label"
-          },
-          {
-            "value": "right",
-            "label": "t:sections.collapsible_content.settings.heading_alignment.options__3.label"
-          }
-        ],
-        "default": "center"
-      },
-      {
-        "type": "select",
-        "id": "heading_size",
-        "options": [
-          {
-            "value": "h2",
-            "label": "t:sections.all.heading_size.options__1.label"
-          },
-          {
-            "value": "h1",
-            "label": "t:sections.all.heading_size.options__2.label"
-          },
-          {
-            "value": "h0",
-            "label": "t:sections.all.heading_size.options__3.label"
-          },
-          {
-            "value": "hxl",
-            "label": "t:sections.all.heading_size.options__4.label"
-          },
-          {
-            "value": "hxxl",
-            "label": "t:sections.all.heading_size.options__5.label"
-          },
-          {
-            "value": "hcustom",
-            "label": "t:sections.all.heading_size.options__6.label"
-          }
-        ],
-        "default": "h1",
-        "label": "t:sections.all.heading_size.label"
-      },
-      {
-        "type": "select",
-        "id": "heading_size_2",
-        "options": [
-          {
-            "value": "h2",
-            "label": "t:sections.all.heading_size.options__1.label"
-          },
-          {
-            "value": "h1",
-            "label": "t:sections.all.heading_size.options__2.label"
-          },
-          {
-            "value": "h0",
-            "label": "t:sections.all.heading_size.options__3.label"
-          },
-          {
-            "value": "hxl",
-            "label": "t:sections.all.heading_size.options__4.label"
-          },
-          {
-            "value": "hxxl",
-            "label": "t:sections.all.heading_size.options__5.label"
-          },
-          {
-            "value": "hcustom_2",
-            "label": "t:sections.all.heading_size.options__6.label"
-          }
-        ],
-        "default": "h1",
-        "label": "t:sections.all.heading_size.label"
-      },
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.collapsible_content.settings.heading_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.collapsible_content.settings.heading_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.collapsible_content.settings.heading_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.collapsible_content.settings.heading_alignment.options__3.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        },
+        {
+          "value": "hcustom",
+          "label": "t:sections.all.heading_size.options__6.label"
+        },
+        {
+          "value": "hcustom_2",
+          "label": "t:sections.all.heading_size.options__6.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
     {
       "type": "select",
       "id": "image_ratio",
@@ -200,9 +188,9 @@
       "type": "range",
       "id": "columns_desktop",
       "min": 1,
-      "max": 6,
-      "step": 1,
-      "default": 3,
+      "max": 2,
+      
+      "default": 2,
       "label": "t:sections.main-list-collections.settings.columns_desktop.label"
     },
     {
@@ -224,11 +212,6 @@
       ],
       "default": "2",
       "label": "t:sections.main-list-collections.settings.columns_mobile.label"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Custom Collections"
     }
   ]
 }

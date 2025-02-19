@@ -13,19 +13,59 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "menu_bEwD44": {
+          "type": "menu",
+          "settings": {
+            "block_linklist": "main-menu"
+          }
+        },
+        "menu_kLUh6A": {
+          "type": "menu",
+          "settings": {
+            "block_linklist": "main-menu"
+          }
+        },
+        "menu_rxGgw9": {
+          "type": "menu",
+          "settings": {
+            "block_linklist": "main-menu"
+          }
+        },
+        "social_media_6ENmph": {
+          "type": "social_media",
+          "settings": {
+            "title": "Follow Us",
+            "facebook_url": "shopify://collections",
+            "twitter_url": "shopify://collections",
+            "instagram_url": "shopify://collections"
+          }
+        },
+        "image_mgkE4Q": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-01-29_092921.png"
+          }
+        },
+        "text_M6qjHD": {
+          "type": "text",
+          "settings": {
+            "footer_text": "Opposable C 2000-2023, All Rights Reserves"
+          }
+        }
+      },
+      "block_order": [
+        "menu_bEwD44",
+        "menu_kLUh6A",
+        "menu_rxGgw9",
+        "social_media_6ENmph",
+        "image_mgkE4Q",
+        "text_M6qjHD"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_certificate": true,
+        "certificate": "shopify://shop_images/Screenshot_2025-01-29_092921.png",
+        "show_region_select": true
       }
     }
   },

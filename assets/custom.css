@@ -1,0 +1,156 @@
+.footer{
+  width:100%;
+ 
+  background:black;
+  color:#ffffff;
+ }
+ .footer-grid{
+   display:flex;
+   flex-direction:column;
+  }
+
+  .footer-top{
+   display:grid;
+   grid-template-columns:1fr 1fr;
+  }
+  .footer-menu__title{
+    font-family: Assistant, sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 31.2px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-bottom:0px;
+    margin-top:20px;
+    padding-left:0;
+    color:rgb(95, 95, 95);
+  }
+
+  .footer-menu__list{
+   list-style:none;
+   padding:0px;
+  }
+
+ .footer-menu__list-item a, .footer-socials a{
+  text-decoration:none;
+  color:#ffffff;
+  font-family: Assistant, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0%;
+  text-align: center;
+
+ }
+ 
+  .footer-socials{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .footer-socials a{
+    padding-bottom:5px;text-align: left;
+  }
+ .footer-menu{
+   display:flex;
+   flex-direction:column;
+   align-items:flex-start;
+   padding-left:35px;
+ }
+ .footer-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px auto;
+ }
+ .footer-logo img{
+  width:90%;
+  height:121px;
+ }
+
+ .footer-text{
+  font-family: Assistant, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.8px;
+  letter-spacing: 0%;
+  text-align: center;
+ }
+ .footer-text h3{
+    margin:0px 30px;
+    padding:20px 0px;
+    border-top:3px solid rgb(95, 95, 95);
+    text-align:center;
+    color:white
+  }
+ @media screen and (min-width: 600px)
+ {
+  .footer-grid{
+   display:flex;
+   flex-direction:row-reverse;
+  }
+  .footer-bottom{
+    flex:1;
+    flex-wrap:wrap;
+  }
+ 
+  .footer-top {
+      display: flex;
+      flex:1;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+
+  .footer-menu--menu{
+      
+      padding-right:50px;
+      padding-top:20px;
+  }
+
+  /* Ensuring social links block appears below menu blocks */
+  .footer-menu--social_media {
+     position:relative;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      padding-left:100px;
+      border-top:3px solid rgb(95, 95, 95);
+      margin-right:30px;
+  }
+
+  .footer-menu--social_media h3
+  {
+    display:none;
+  }
+
+  /* Display social media links in a row */
+  .footer-socials {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      width:100%;
+      justify-content:flex-end;
+      
+      /* position:absolute;
+      right:20px;
+      top:10px; */
+  }
+  .footer-socials a{
+    border:2px solid white;
+    border-radius:20px;
+    padding:5px 10px;
+    margin-right:15px;
+  }
+  .footer-logo{
+    margin:0px;
+  }
+
+  .footer-text h3{
+    margin:0px;
+    text-align:left;
+    margin-left:30px;
+  }
+ }
