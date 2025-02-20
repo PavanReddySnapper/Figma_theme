@@ -107,9 +107,9 @@
     }
 
     .footer-menu--menu{
-        
+        height:300px;
         padding-right:50px;
-        padding-top:20px;
+        padding-top:50px;
     }
 
     /* Ensuring social links block appears below menu blocks */
@@ -152,6 +152,7 @@
       margin:0px;
     }
     .footer-logo img{
+      height:200px;
       background-size:cover;
     }
 
@@ -233,7 +234,7 @@
           endcase
         -%}
         {%- if block.type == 'image' -%}
-        <div class="footer-logo" style="height: 189px;">
+        <div class="footer-logo" style="height: 300px;">
           {% if block.settings.image != blank %}
             <img  src="{{ block.settings.image | img_url: '1000x' }}" alt="opposable logo">
           {% endif %}

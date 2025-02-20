@@ -36,9 +36,8 @@
         "sort": "alphabetical",
         "heading_alignment": "center",
         "heading_size": "hcustom",
-        "heading_size_2": "hcustom_2",
         "image_ratio": "square",
-        "columns_desktop": 3,
+        "show_view_all": true,
         "columns_mobile": "1"
       }
     },

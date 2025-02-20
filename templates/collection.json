@@ -13,8 +13,10 @@
       "type": "main-collection-banner",
       "settings": {
         "show_collection_description": true,
+        "heading_size": "hcustom",
         "show_collection_image": false,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "background_image": "shopify://shop_images/f00f3bbcc92fb72c5ae3fc63df9b7c9d.jpg"
       }
     },
     "product-grid": {
@@ -23,7 +25,7 @@
         "products_per_page": 16,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,

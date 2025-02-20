@@ -57,6 +57,7 @@
             {%- if filter_type == 'vertical' -%}
               <div class="active-facets active-facets-desktop">
                 <div class="active-facets-vertical-filter">
+                  
                   {%- unless results.filters == empty -%}
                     <h2
                       class="facets__heading facets__heading--vertical caption-large text-body"
@@ -102,8 +103,23 @@
                         </a>
                       </facet-remove>
                     {%- endif -%}
+                    <div class="collections-middle">
+                      <h2>Collections</h2>
+                      <ul class="collection-links">
+                        <li>
+                          <a href="/collections/all" class="collection-link" data-collection-id="all">All</a>
+                        </li>
+                        <li>
+                          <a href="/collections/mens" class="collection-link" data-collection-id="mens">Men's</a>
+                        </li>
+                        <li>
+                          <a href="/collections/womens" class="collection-link" data-collection-id="womens">Women's</a>
+                        </li>
+                      </ul>
+                    </div>
                   {% endif %}
                 {%- endfor -%}
+                
               </div>
             {%- endif -%}
 

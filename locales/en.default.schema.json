@@ -428,6 +428,9 @@
         },
         "options__6": {
           "label": "Custom Size"
+        },
+        "options__7": {
+          "label": "Custom Size Mobile"
         }
       },
       "image_shape": {

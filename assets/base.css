@@ -302,9 +302,9 @@ h1,
 }
 
 .hcustom{
-    font-size: 120px;
-    font-weight: 900;
-    line-height: 120px;
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 40px;
     letter-spacing: 0.02em;
     font-family: Poppins, sans-serif;
     color:#464646;
@@ -312,7 +312,7 @@ h1,
 }
 .hcustom_2{
   font-size: 40px;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 42px;
   letter-spacing: 0.02em;
   font-family: Poppins, sans-serif;
@@ -338,6 +338,7 @@ h2,
     font-size: calc(var(--font-heading-scale) * 2.4rem);
   }
   .hcustom{
+    line-height: 120px;
     font-size: 120px;
   }
   .hcustom_2{

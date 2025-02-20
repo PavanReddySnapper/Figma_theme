@@ -1,16 +1,28 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-{%  style %}
-  @media screen and (max-width:600px){
-    .title{
-      width:100%;
-      font-size:30px;
-      margin:0px !important;
-      text-align:center;
-    }
+
+{% style %}
+  .collection-section {
+    position: relative;
+    padding-bottom: 100px; /* Ensures space for View All button */
+  }
+
+  .collection-section::after {
+    content: "";
+    position: absolute;
+    top: 35%; /* Starts after the collection list */
+    left: 40%;
+    width: 100%;
+    height: 100%; /* Adjust as needed */
+    background-image: url('{{ "background-collection.png" | asset_url }}');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
   }
 {% endstyle %}
-<div class="page-width">
+
+<div class="page-width collection-section" style="height:2000px">
   <h1 style="text-align: {{ section.settings.heading_alignment }};" class="{{ section.settings.heading_size }} title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
@@ -36,14 +48,14 @@
     <ul
       class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
       role="list"
-      style="justify-content:center;gap:15px"
+      
     >
       {%- for collection in collections limit:2 -%}
         <li
           class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index }};"
+            style="margin:25px;--animation-order: {{ forloop.index }};"
           {% endif %}
         >
           {% render 'card-collection',
@@ -55,18 +67,33 @@
       {%- endfor -%}
     </ul>
     {% render 'pagination', paginate: paginate %}
-    <div style="text-align: center; margin: 50px auto;">
-      <a href="/collections" style="padding: 10px 30px; background-color: rgb(var(--color-background)); color: #000; text-decoration: none; border:2px solid black; border-radius: 10px;">
-        View All    <svg width="8" height="10" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.70637 6.29363C7.89384 6.48116 7.99915 6.73547 7.99915 7.00063C7.99915 7.2658 7.89384 7.52011 7.70637 7.70763L2.04937 13.3646C1.95712 13.4601 1.84678 13.5363 1.72477 13.5887C1.60277 13.6411 1.47155 13.6687 1.33877 13.6699C1.20599 13.671 1.07431 13.6457 0.951413 13.5955C0.828516 13.5452 0.716864 13.4709 0.622971 13.377C0.529078 13.2831 0.454825 13.1715 0.404544 13.0486C0.354264 12.9257 0.328962 12.794 0.330116 12.6612C0.33127 12.5285 0.358856 12.3972 0.411265 12.2752C0.463674 12.1532 0.539856 12.0429 0.635366 11.9506L5.58537 7.00063L0.635366 2.05063C0.453207 1.86203 0.352413 1.60943 0.354692 1.34723C0.35697 1.08504 0.462139 0.834223 0.647547 0.648815C0.832955 0.463407 1.08377 0.358237 1.34596 0.355959C1.60816 0.353681 1.86076 0.454474 2.04937 0.636633L7.70637 6.29363Z" fill="#0D0D0D"/>
-          </svg> 
-      </a>
-    </div>
+    {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
+      <div
+        class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+        style="margin:80px;"
+      >
+        <a
+          href="{{ routes.collections_url }}"
+          
+          id="ViewAllButton-{{ section.id }}"
+          aria-labelledby="ViewAllButton-{{ section.id }} SectionHeading-{{ section.id }}"
+          style="padding: 10px 30px; background-color: rgb(var(--color-background)); border:3px solid #000; color: #000; text-decoration: none; border-radius: 20px;"
+        >
+          {{- 'sections.collection_list.view_all' | t -}}  <svg style="padding-left:10px"idth="8" height="12" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.70637 6.29363C7.89384 6.48116 7.99915 6.73547 7.99915 7.00063C7.99915 7.2658 7.89384 7.52011 7.70637 7.70763L2.04937 13.3646C1.95712 13.4601 1.84678 13.5363 1.72477 13.5887C1.60277 13.6411 1.47155 13.6687 1.33877 13.6699C1.20599 13.671 1.07431 13.6457 0.951413 13.5955C0.828516 13.5452 0.716864 13.4709 0.622971 13.377C0.529078 13.2831 0.454825 13.1715 0.404544 13.0486C0.354264 12.9257 0.328962 12.794 0.330116 12.6612C0.33127 12.5285 0.358856 12.3972 0.411265 12.2752C0.463674 12.1532 0.539856 12.0429 0.635366 11.9506L5.58537 7.00063L0.635366 2.05063C0.453207 1.86203 0.352413 1.60943 0.354692 1.34723C0.35697 1.08504 0.462139 0.834223 0.647547 0.648815C0.832955 0.463407 1.08377 0.358237 1.34596 0.355959C1.60816 0.353681 1.86076 0.454474 2.04937 0.636633L7.70637 6.29363Z" fill="#0D0D0D"/>
+            </svg>
+            
+        </a>
+      </div>
+    {%- endif -%}
   {%- endpaginate -%}
 </div>
 {% schema %}
 {
-  "name": "t:sections.main-list-collections.name",
+  "name": "Custom Collections List",
   "class": "section",
   "settings": [
     {
@@ -157,7 +184,7 @@
         },
         {
           "value": "hcustom_2",
-          "label": "t:sections.all.heading_size.options__6.label"
+          "label": "t:sections.all.heading_size.options__7.label"
         }
       ],
       "default": "h1",
@@ -184,14 +211,12 @@
       "label": "t:sections.main-list-collections.settings.image_ratio.label",
       "info": "t:sections.main-list-collections.settings.image_ratio.info"
     },
+   
     {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 2,
-      
-      "default": 2,
-      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": false,
+      "label": "t:sections.collection-list.settings.show_view_all.label"
     },
     {
       "type": "header",
@@ -213,6 +238,11 @@
       "default": "2",
       "label": "t:sections.main-list-collections.settings.columns_mobile.label"
     }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collections List"
+     }
   ]
 }
 {% endschema %}
