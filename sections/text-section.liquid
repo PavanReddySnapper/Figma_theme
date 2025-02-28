@@ -23,33 +23,7 @@
 </div>
 
 {% style %}
-/* Overlay to reduce exposure (darken/lighten effect) */
-
-/* Optional: Add a semi-transparent overlay to reduce image exposure */
-.text-section::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color:rgb(211, 210, 205); /* Background color overlay */
-      opacity: 0.5; /* Adjust this to control how much of the image is visible */
-      z-index: -1;
-  }
 .text-section{
-    padding:30px;
-      position: relative; /* Allows precise positioning */
-      background-image: url('{{ section.settings.background_image | image_url }}');
-      background-size: 1000px 1000px; /* Exact dimensions */
-        background-repeat: no-repeat;
-        background-position: -505px 250px; /* Aligns the image */
-      background-color: #D4D3CE; /* Base background color */
-      width:100%;
-      height: 900px;
-      gap: 0px;
-      opacity: 1; /* Make sure the image is visible */
-      overflow: hidden; /* Prevents extra overflow */
     width:100%;
 }
   .text{
@@ -94,12 +68,6 @@
 
    @media screen and (min-width:600px)
    {
-    .text-section{
-        height:1850px;
-        background-size: 2635px 2565px; /* Exact dimensions */
-      background-repeat: no-repeat;
-      background-position: -1605px 600px; /* Aligns the image */
-    }
     .text{
         width:50%;
     }
