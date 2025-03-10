@@ -1,0 +1,139 @@
+{% schema %}
+{
+  "name": "Accordion",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is HTML?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>HTML stands for HyperText Markup Language. It is the standard markup language for creating web pages.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "accordion_item"
+        },
+        {
+          "type": "accordion_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .accordion {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .accordion-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .accordion-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+
+  .accordion-question span {
+    font-weight: bold;
+  }
+
+  .accordion-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .accordion-answer {
+    padding: 10px;
+    background-color: #fff;
+    display: none;
+  }
+
+  .accordion-answer p {
+    margin: 0;
+  }
+
+  .accordion-item.active .accordion-answer {
+    display: block;
+  }
+
+  .accordion-item.active .accordion-toggle {
+    content: '-';
+  }
+</style>
+
+<div class="accordion">
+  {% for block in section.blocks %}
+    <div class="accordion-item" {{ block.shopify_attributes }}>
+      <div class="accordion-question">
+        <span>{{ block.settings.question }}</span>
+        <button class="accordion-toggle">+</button>
+      </div>
+      <div class="accordion-answer">
+        {{ block.settings.answer }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+      const toggleButton = item.querySelector('.accordion-toggle');
+      const answer = item.querySelector('.accordion-answer');
+
+      toggleButton.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other accordion items
+        accordionItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.accordion-toggle').textContent = '+';
+          }
+        });
+
+        // Toggle the current item
+        if (isActive) {
+          item.classList.remove('active');
+          toggleButton.textContent = '+';
+        } else {
+          item.classList.add('active');
+          toggleButton.textContent = '-';
+        }
+      });
+    });
+  });
+</script>

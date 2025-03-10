@@ -1,0 +1,222 @@
+<section class="section section--main-page-faqs" data-section-id="{{ section.id }}" data-section-type="main-page-faqs">
+    <div class="main-page-faqs__container container container--sm">
+      {%- if section.settings.title != blank -%}
+        <div class="section-title">
+          {%- liquid
+            assign heading_tag = 'p'
+            if section.settings.is_primary_heading
+              assign heading_tag = 'h1'
+            endif
+          -%}
+          <{{ heading_tag }} class="h6">
+            {{ section.settings.title }}
+          </{{ heading_tag }}>
+        </div>
+      {%- endif -%}
+  
+      <div class="rte">
+        {%- liquid
+          assign section_blocks = section.blocks | map: 'settings'
+          assign label_array = section_blocks | map: 'title'
+          assign content_array = section_blocks | map: 'content'
+          render 'component-accordion-item', labels: label_array, contents: content_array, multi: false, open_first: false, unique: section.id
+        -%}
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    #shopify-section-{{ section.id }} {
+      margin-bottom: {{ section.settings.bottom_margin_mobile }}px;
+    }
+  
+    @media only screen and (min-width: {{ settings.grid_medium }}px) {
+      #shopify-section-{{ section.id }} {
+        margin-bottom: {{ section.settings.bottom_margin_desktop }}px;
+      }
+    }
+    .accordion {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .accordion__label {
+        border-bottom: 1px solid #e0e0e0;
+      }
+      
+      .accordion__label:last-child {
+        border-bottom: none;
+      }
+      
+      .accordion__trigger {
+        width: 100%;
+        padding: 16px 24px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f9f9f9;
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .accordion__trigger:hover {
+        background-color: #f1f1f1;
+      }
+      
+      .accordion__trigger-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .accordion__trigger-indicator svg {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+      
+      .accordion__trigger-indicator .icon--minus {
+        display: none;
+      }
+      
+      .accordion__trigger[aria-expanded="true"] .icon--plus {
+        display: none;
+      }
+      
+      .accordion__trigger[aria-expanded="true"] .icon--minus {
+        display: block;
+      }
+      
+      .accordion__panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      .accordion__panel.show-panel {
+        max-height: 500px; /* Adjust based on your content */
+      }
+      
+      .accordion__body {
+        padding: 16px 24px;
+        background-color: #fff;
+        color: #555;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordions = document.querySelectorAll('.accordion');
+      
+        accordions.forEach((accordion) => {
+          const triggers = accordion.querySelectorAll('.accordion__trigger');
+          const isMulti = accordion.querySelector('.accordion__trigger').getAttribute('aria-multi') === '1';
+      
+          triggers.forEach((trigger) => {
+            trigger.addEventListener('click', function () {
+              const panel = this.nextElementSibling;
+              const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+              if (!isMulti) {
+                // Close all other panels if multi is false
+                triggers.forEach((t) => {
+                  if (t !== trigger) {
+                    t.setAttribute('aria-expanded', 'false');
+                    t.nextElementSibling.classList.remove('show-panel');
+                    t.nextElementSibling.style.maxHeight = '0';
+                  }
+                });
+              }
+      
+              // Toggle the clicked panel
+              this.setAttribute('aria-expanded', !isExpanded);
+              panel.classList.toggle('show-panel');
+              panel.style.maxHeight = isExpanded ? '0' : panel.scrollHeight + 'px';
+            });
+          });
+        });
+      });
+  </script>
+  {% schema %}
+    {
+      "name": "FAQ Accordions",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Section Settings"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "FAQ"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_primary_heading",
+          "label": "Is Primary Page Heading",
+          "default": true,
+          "info": "This will make the heading an <h1> tag. Only use once per page."
+        },
+        {
+          "type": "header",
+          "content": "Section Spacing"
+        },
+        {
+          "type": "range",
+          "id": "bottom_margin_desktop",
+          "min": 0,
+          "max": 120,
+          "step": 8,
+          "unit": "px",
+          "label": "Bottom Margin - Desktop",
+          "default": 120
+        },
+        {
+          "type": "range",
+          "id": "bottom_margin_mobile",
+          "min": 0,
+          "max": 120,
+          "step": 8,
+          "unit": "px",
+          "label": "Bottom Margin - Mobile",
+          "default": 80
+        }
+      ],
+      "blocks": [
+        {
+          "type": "question",
+          "name": "Question",
+          "settings": [
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title"
+            },
+            {
+              "type": "richtext",
+              "id": "content",
+              "label": "Content",
+              "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "FAQ Accordions",
+          "category": "Text"
+        }
+      ],
+      "enabled_on": {
+        "templates": ["*"]
+      }
+    }
+  {% endschema %}
+  

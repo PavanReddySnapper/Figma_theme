@@ -24,7 +24,7 @@
       endif
     -%}
 
-    <product-form
+    <product-form 
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
@@ -70,7 +70,61 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          <button
+
+          <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+            <button class="quantity__button" name="minus" type="button">
+              <span class="visually-hidden">
+                {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+              </span>
+              <span class="svg-wrapper" style="font-family: Poppins;
+                font-weight: 600;
+                font-size: 28px;
+                line-height: 150%;
+                letter-spacing: 0%;
+                text-align: center;
+                ">
+               -
+              </span>
+            </button>
+            <input  style="color:#464646;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: center;
+border:2px solid #464646;
+"
+              class="quantity__input"
+              type="number"
+              name="quantity"
+              id="Quantity-{{ section.id }}"
+              data-cart-quantity="{{ cart_qty }}"
+              data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+              min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+              {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
+                data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+              {% endif %}
+              step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+              value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+              form="{{ product_form_id }}"
+            >
+            <button class="quantity__button" name="plus" type="button" >
+              <span class="visually-hidden">
+                {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+              </span>
+              <span class="svg-wrapper" style="font-family: Poppins;
+font-weight: 600;
+font-size: 28px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: center;
+">
+                +
+              </span>
+            </button>
+          </quantity-input>
+          <button style="border-radius:15px"
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
@@ -82,21 +136,28 @@
               disabled
             {% endif %}
           >
-            <span>
+            <span  style="color:#E2E1DC;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: center;
+">
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
+                {{ 'products.product.add_to_cart' | t | upcase }}
               {%- endif -%}
             </span>
             {%- render 'loading-spinner' -%}
           </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
+          
         </div>
+        {% comment %} {%- if show_dynamic_checkout -%}
+          {{ form | payment_button }}
+        {%- endif -%} {% endcomment %}
       {%- endform -%}
     </product-form>
   {%- else -%}

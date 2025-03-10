@@ -1228,7 +1228,7 @@ button.shopify-payment-button__button--unbranded {
   --shadow-blur-radius: var(--buttons-shadow-blur-radius);
   --shadow-opacity: var(--buttons-shadow-opacity);
   --shadow-visible: var(--buttons-shadow-visible);
-  --border-offset: var(--buttons-border-offset); /* reduce radius edge artifacts */
+  /* --border-offset: var(--buttons-border-offset);  */
   --border-opacity: calc(1 - var(--buttons-border-opacity));
   border-radius: var(--buttons-radius-outset);
   position: relative;
@@ -1299,7 +1299,7 @@ button.shopify-payment-button__button--unbranded {
 .shopify-challenge__button:hover::after,
 .customer button:hover::after,
 .shopify-payment-button__button--unbranded:hover::after {
-  --border-offset: 1.3px;
+  /* --border-offset: 1.3px; */
   box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
       rgba(var(--color-button-text), var(--border-opacity)),
     0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
@@ -1918,13 +1918,14 @@ input[type='checkbox'] {
 }
 
 .quantity:after {
+  display: none;
   pointer-events: none;
   content: '';
   position: absolute;
-  top: var(--inputs-border-width);
+  /* top: var(--inputs-border-width);
   right: var(--inputs-border-width);
   bottom: var(--inputs-border-width);
-  left: var(--inputs-border-width);
+  left: var(--inputs-border-width); */
   border: 0.1rem solid transparent;
   border-radius: var(--inputs-radius);
   box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
@@ -2024,6 +2025,10 @@ input[type='checkbox'] {
 }
 
 .quantity__input[type='number'] {
+  border-radius: 4px; 
+ 
+    height: 60px;
+    width: 60px;
   -moz-appearance: textfield;
 }
 
@@ -3521,14 +3526,14 @@ details-disclosure > details {
   .animate--hover-vertical-lift .button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .customer button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .shopify-payment-button__button:not([disabled]):hover:after {
-    --border-offset: 0.3px; /* Default is 1.3px as defined above in this file. This removes 1px to prevent the border from growing on buttons when this effect is on.  */
+    /* --border-offset: 0.3px; Default is 1.3px as defined above in this file. This removes 1px to prevent the border from growing on buttons when this effect is on.  */
     box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
         rgba(var(--color-button-text), var(--border-opacity)),
       0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
   }
 
   .animate--hover-vertical-lift .button:not([disabled]).button--secondary:hover:after {
-    --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
+    /* --border-offset: 0px; Prevent the border from growing on buttons when this effect is on. */
   }
 }
 

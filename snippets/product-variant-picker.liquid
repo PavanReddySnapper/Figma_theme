@@ -27,7 +27,7 @@
           endif
         endif
       -%}
-      {%- if picker_type == 'swatch' -%}
+      {% comment %} {%- if picker_type == 'swatch' -%}
         <fieldset class="js product-form__input product-form__input--swatch">
           <legend class="form__label">
             {{ option.name }}:
@@ -41,18 +41,38 @@
             block: block,
             picker_type: picker_type
           %}
-        </fieldset>
-      {%- elsif picker_type == 'button' -%}
+        </fieldset> {% endcomment %}
+      {%- if picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+          <div style="display:flex;align-items:center;justify-content:space-between" >
+          <legend style="color:#464646;
+font-weight: 900;
+font-size: 24px;
+line-height: 150%;
+letter-spacing: 2%;
+text-align: left;
+text-transform: uppercase;
+" class="form__label">{{ option.name }}</legend>
+<span style="width:103px;
+  height:30px;
+  margin-right:20px;
+font-weight: 600;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 0%;
+margin-right:0px;
+text-align: right;
+">Size guide</span>
+</div>
+<div style="width:841px;display:flex;justify-content:space-between" >
           {% render 'product-variant-options',
             product: product,
             option: option,
             block: block,
             picker_type: picker_type
-          %}
+          %}</div>
         </fieldset>
-      {%- else -%}
+      {% comment %} {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
@@ -83,7 +103,7 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </div>
-        </div>
+        </div> {% endcomment %}
       {%- endif -%}
     {%- endfor -%}
 

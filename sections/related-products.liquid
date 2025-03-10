@@ -18,6 +18,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+.related-products{
+  max-width:1800px !important;
+}
+ 
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -28,7 +32,7 @@
     data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}" style="text-align:center">
         {{ section.settings.heading }}
       </h2>
       <ul
@@ -97,6 +101,10 @@
         {
           "value": "hxxl",
           "label": "t:sections.all.heading_size.options__5.label"
+        },
+        {
+          "value": "hcustom",
+          "label": "t:sections.all.heading_size.options__6.label"
         }
       ],
       "default": "h1",

@@ -109,7 +109,25 @@
       {% endif %}
       {{ input_dataset }}
     >
-    <label for="{{ input_id }}">
+    <label  style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 400;
+      color:#000000;
+      font-size: 24px;
+      line-height: 150%;
+      letter-spacing: 2%;
+      text-align: center;
+      text-transform: uppercase;
+      width: 84px; /* Fixed width */
+      height: 46px; /* Fixed height */
+      border-radius: 15px;
+      background-color:#D4D3CE;
+      overflow: hidden; /* Prevents content from overflowing */
+      white-space: nowrap; /* Prevents text from wrapping */
+      text-overflow: ellipsis; /* Adds ellipsis if text overflows */;
+      " for="{{ input_id }}">
       {% if swatch_value %}
         <span class="color-swatch" style="background-color: {{ swatch_value }};"></span>
       {% else %}
