@@ -300,7 +300,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} template-{{ request.page_type | handle }}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -395,5 +395,69 @@
     <!-- Swiper JS -->
    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+   <style>
+    body .template-list-collections{
+      background-color:#e3e2dc !important;
+      color:#000000 !important;
+    }
+
+    body:not(.template-index){
+      background-color:#e3e2dc !important;
+      color:#000000 !important;
+    }
+
+    .card__information{
+    
+          display: flex;
+          align-items:flex-start;
+          gap:10px;
+        }
+        @media screen and (max-width: 600px) {
+          .card__information{
+    
+            flex-direction:column;
+            align-items:center;
+            gap:10px;
+          }
+
+          .card__information h3{
+            color:#0F0F0F;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 150%;
+            letter-spacing: 2%;
+            text-align: center;
+            text-transform: capitalize;
+          }
+          .price-item--regular, .price-item--last{
+          
+          text-align:center;}
+        }
+
+       .card__information h3{
+        flex-basis:170%;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 150%;
+        letter-spacing: 2%;
+        text-align: center;
+      }
+
+      .price-item--regular, .price-item--last{
+        color:#747474;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 150%;
+        letter-spacing: 2%;
+        text-align: left;
+      }
+
+      .facets__form{
+        {% comment %} font-weight: 600;
+        font-size: 24px;
+        line-height: 150%;
+        letter-spacing: 2%; {% endcomment %}
+      }
+   </style>
   </body>
 </html>

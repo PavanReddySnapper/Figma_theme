@@ -122,6 +122,28 @@ details[open] .header__submenu {
     font-size:20px;
     padding:5px 5px 5px 0;
   }
+
+  @media  (max-width: 600px) {
+    .header
+    {
+      display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    }
+    .header__icons{
+      display:none;
+    }
+    .header__icon--cart{
+      display:none !important;
+    }
+    .cart-text{
+      display:none;
+    }
+    .cart-icon
+    {
+      display:none;
+    }
+  }
   .profile-icon,.cart-icon{
     filter: grayscale(100%) brightness(0) invert(1);
   }
