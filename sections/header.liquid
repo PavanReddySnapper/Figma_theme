@@ -128,10 +128,16 @@ details[open] .header__submenu {
     padding:5px 5px 5px 0;
   }
 
-  .header__menu-item span{
-    color:#000;
-    font-weight:550;
+  .header__icon span {
+    color: {% if template.name == 'index' %} white {% else %} black {% endif %};
   }
+  
+    
+  .header__menu-item span {
+    color: {% if template.name == 'index' %} white {% else %} black {% endif %};
+    font-weight: 550;
+  }
+  
 
   @media  (max-width: 600px) {
     .header
@@ -161,7 +167,19 @@ details[open] .header__submenu {
     position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
+/* Make the header sticky */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure the header stays above other content */
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
 
+/* Optional: Add a transition effect when the header becomes sticky */
+.header-wrapper.sticky {
+  transition: all 0.3s ease;
+}
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
@@ -387,7 +405,30 @@ details[open] .header__submenu {
 {%- endif -%}
 
 {% javascript %}
+document.addEventListener('DOMContentLoaded', function () {
+  const header = document.querySelector('.header-wrapper');
+  let lastScrollTop = 0;
+  const scrollOffset = 100; // Adjust this value as needed
 
+  window.addEventListener('scroll', function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > scrollOffset) {
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        header.classList.remove('sticky');
+      } else {
+        // Scrolling up
+        header.classList.add('sticky');
+      }
+    } else {
+      // At the top of the page
+      header.classList.remove('sticky');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+});
   class StickyHeader extends HTMLElement {
     constructor() {
       super();
@@ -520,6 +561,9 @@ details[open] .header__submenu {
     ],
     "url": {{ request.origin | append: page.url | json }}
   }
+
+
+  
 </script>
 
 {%- if request.page_type == 'index' -%}
