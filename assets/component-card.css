@@ -94,6 +94,11 @@
   text-align: var(--text-alignment);
 }
 
+@media (max-width:420px) {
+  .card-information {
+    text-align: center;
+  }
+}
 .card__media,
 .card .media {
   bottom: 0;
