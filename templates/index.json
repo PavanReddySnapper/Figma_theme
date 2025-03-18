@@ -15,6 +15,40 @@
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
       }
     },
+    "collection_list_gtD8iB": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_9tbJ7B": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "anatomy"
+          }
+        },
+        "featured_collection_EmKJE8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "billboard"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_9tbJ7B",
+        "featured_collection_EmKJE8"
+      ],
+      "settings": {
+        "title": "COLLECTIONS",
+        "heading_size": "hcustom",
+        "heading_alignment": "center",
+        "image_ratio": "square",
+        "columns_desktop": 2,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "custom": {
       "type": "text-section",
       "settings": {
@@ -24,21 +58,6 @@
         "image_3": "shopify://shop_images/t.jpg",
         "button_label_1": "Your finger prints<br> are unique t<span style=\"color:grey\">o you, <br>and so is your style. </span>",
         "button_label_2": "<span style=\"color:grey\">Opposable brings <br>unapologetic designs. <br>Bold, Fresh and Limited.</span>"
-      }
-    },
-    "collections_list": {
-      "type": "custom-collections",
-      "custom_css": [
-        ".title {margin: 60px auto;}"
-      ],
-      "settings": {
-        "title": "COLLECTIONS",
-        "sort": "alphabetical",
-        "heading_alignment": "center",
-        "heading_size": "hcustom",
-        "image_ratio": "square",
-        "show_view_all": true,
-        "columns_mobile": "1"
       }
     },
     "collections_slider": {
@@ -51,8 +70,8 @@
         "show_description": false,
         "description_style": "body",
         "collection": "anatomy",
-        "products_to_show": 4,
-        "columns_desktop": 4,
+        "products_to_show": 3,
+        "columns_desktop": 3,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -64,7 +83,7 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 60,
         "padding_bottom": 36
@@ -74,7 +93,7 @@
   "order": [
     "video_RQ8cnh",
     "custom",
-    "collections_list",
+    "collection_list_gtD8iB",
     "collections_slider"
   ]
 }

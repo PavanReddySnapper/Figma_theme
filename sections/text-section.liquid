@@ -3,10 +3,10 @@
     <div class="overlay"></div> <!-- Overlay for reducing exposure -->
     <div class="text">
        <div id="top-text">
-        {{ section.settings.button_label_1 }}
+        {{ section.settings.button_label_1 | upcase }}
        </div>
        <div id="bottom-text">
-        {{ section.settings.button_label_2 }}
+        {{ section.settings.button_label_2 | upcase }}
        </div>
     </div>
     <div class="demo-pictures">
@@ -29,22 +29,25 @@
     width:100%;
 }
   .text{
-    width:80%;
+    width:100%;
     margin:20px auto;
     text-align:center;
+    padding:10px;
   }
 
   #top-text{
-    font-family: Poppins;
-    font-weight: 800;
-    font-size: 28px;
-    line-height: 42px;
-    letter-spacing: 0%;
-    text-align: center;
+    color:#bfbeb6;
+font-weight: 800;
+font-size: 28px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: center;
+text-transform: uppercase;
+
 
   }
   #bottom-text{
-    font-family: Poppins;
+    color:#bfbeb6;
     font-weight: 800;
     font-size: 28px;
     line-height: 42px;
@@ -62,7 +65,8 @@
   }
   
    #img-1 img{
-     width:350px;
+     margin:5px;
+     max-width:320px;
      height:530px;
      object-fit: cover;
      border-radius:20px;
@@ -71,11 +75,14 @@
    @media screen and (min-width:600px)
    {
     .text{
-        width:50%;
+        width:70%;
+    }
+    #top-text{
+      padding: 0px 120px;
     }
       #top-text, #bottom-text{
-        font-family: Poppins;
-        font-weight: 700;
+        
+        font-weight: 1310px;
         font-size: 97px;
         line-height: 102.82px;
         letter-spacing: 2%;
@@ -90,10 +97,11 @@
      }
 
      #img-1 img, #img-2 img, #img-3 img{
-        width:550px;
+        width:auto;
+        max-width:550px;
         height:830px;
         object-fit: cover;
-        border-radius:20px 0px 20px 0px;
+        border-radius:20px ;
      }
    }
 {% endstyle %}

@@ -15,9 +15,10 @@
       "type": "header",
       "settings": {
         "logo_position": "middle-center",
+        "transparent_header_templates": "",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
+        "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-3",
         "menu_color_scheme": "scheme-4",
