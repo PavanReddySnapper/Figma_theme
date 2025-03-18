@@ -36,14 +36,14 @@
 {%- endstyle -%}
 
 <div 
-  class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient"
+  class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} gradient"
   {% if section.settings.background_image != blank %}
     style="background-image: url({{ section.settings.background_image | image_url }});"
   {% endif %}
 >
   <div class="collection-hero__text-wrapper">
     <h1 class="collection-hero__title {{ section.settings.heading_size }}">
-      SHOP ALL
+      {{ section.settings.heading | upcase }}
     </h1>
 
     {%- if section.settings.show_collection_description -%}
@@ -57,6 +57,11 @@
   "name": "t:sections.main-collection-banner.name",
   "class": "section",
   "settings": [
+    {
+      "type":"text",
+      "id":"heading",
+       "label":"Header"
+    },
     {
       "type": "paragraph",
       "content": "t:sections.main-collection-banner.settings.paragraph.content"
@@ -116,6 +121,11 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background Image"
+    }
+  ],
+  "presets": [
+    {
+       "name": "Collection Banner"
     }
   ]
 }

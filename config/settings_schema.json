@@ -12,6 +12,11 @@
     "settings": [
       {
         "type": "image_picker",
+        "id": "homelogo",
+        "label": "t:settings_schema.logo.settings.logo_image.label"
+      },
+      {
+        "type": "image_picker",
         "id": "logo",
         "label": "t:settings_schema.logo.settings.logo_image.label"
       },

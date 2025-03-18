@@ -9,10 +9,22 @@
  */
 {
   "sections": {
+    "main_collection_banner_ryyYBy": {
+      "type": "main-collection-banner",
+      "settings": {
+        "heading": "Collections",
+        "show_collection_description": true,
+        "heading_size": "hcustom",
+        "show_collection_image": false,
+        "color_scheme": "",
+        "background_image": "shopify://shop_images/hero1-skater_1.png"
+      }
+    },
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "title": "Collections",
+        "title": "",
+        "heading_size": "h1",
         "sort": "alphabetical",
         "image_ratio": "square",
         "columns_desktop": 3,
@@ -21,6 +33,7 @@
     }
   },
   "order": [
+    "main_collection_banner_ryyYBy",
     "main"
   ]
 }
