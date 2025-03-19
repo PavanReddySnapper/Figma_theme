@@ -43,7 +43,7 @@ letter-spacing: 2%;
 text-align: center;
 text-transform: uppercase;
     width: 857px;
-    height:68px;
+    
     border-top: 2px solid #464646;
     color:#464646;
     overflow: hidden;
@@ -74,8 +74,9 @@ text-transform: uppercase;
 
   .accordion-answer {
     padding: 10px;
-    background-color: #fff;
+    background-color: #e2e1dc;
     display: none;
+    text-align:left;
   }
 
   .accordion-answer p {
@@ -89,6 +90,17 @@ text-transform: uppercase;
   .accordion-item.active .accordion-toggle {
     content: '-';
   }
+
+  .accordion-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-item.active .accordion-answer {
+  max-height: 500px; /* Adjust this as needed */
+}
+
   /* Ensure parent takes full width */
 .product__info-wrapper {
   width: 100%;
@@ -673,7 +685,7 @@ text-transform: uppercase;
 
             {%- when 'accordion' -%}
               <div class="product-accordion" style="width: 100%; max-width: 100%;">
-                <div class="accordion-item"  {{ block.shopify_attributes }}>
+                <div class="accordion-item" {{ block.shopify_attributes }}>
                   <div class="accordion-question">
                     <span>{{ block.settings.question }}</span>
                     <button class="accordion-toggle">+</button>
@@ -937,14 +949,14 @@ text-transform: uppercase;
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const accordionItems = document.querySelectorAll('.accordion-item');
-  
+    
       accordionItems.forEach(item => {
         const toggleButton = item.querySelector('.accordion-toggle');
         const answer = item.querySelector('.accordion-answer');
-  
+    
         toggleButton.addEventListener('click', () => {
           const isActive = item.classList.contains('active');
-  
+    
           // Close all other accordion items
           accordionItems.forEach(otherItem => {
             if (otherItem !== item) {
@@ -952,7 +964,7 @@ text-transform: uppercase;
               otherItem.querySelector('.accordion-toggle').textContent = '+';
             }
           });
-  
+    
           // Toggle the current item
           if (isActive) {
             item.classList.remove('active');
@@ -964,6 +976,7 @@ text-transform: uppercase;
         });
       });
     });
+    
   </script>
 </div>
 

@@ -101,14 +101,14 @@ details[open] .header__submenu {
 
   .template-header{
   justify-content: space-around;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(0, 0, 0,0.2);
   position: absolute;
   top: 0;
   left: 0;
   width:100%;
   
   z-index: 10;
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px); */
   
 }
 .header__menu-item {
@@ -398,7 +398,7 @@ details[open] .header__submenu {
       {% endif %}
     </div>
   </header>
-</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+</header>
 
 {%- if settings.cart_type == "notification" -%}
   {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
@@ -538,6 +538,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.template-header');
+    const videoContainer = document.querySelector('.video-container');
+
+    // Function to set header height as a CSS variable
+    function setHeaderHeight() {
+      const headerHeight = header.offsetHeight;
+      document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+
+      // Set mobile header height
+      if (window.innerWidth <= 767) {
+        document.documentElement.style.setProperty('--header-height-mobile', `${headerHeight}px`);
+      }
+    }
+
+    // Set initial header height
+    setHeaderHeight();
+
+    // Update header height on window resize
+    window.addEventListener('resize', setHeaderHeight);
+  });
+</script>
 {% endjavascript %}
 
 <script type="application/ld+json">

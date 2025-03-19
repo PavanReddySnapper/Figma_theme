@@ -15,6 +15,17 @@
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
       }
     },
+    "custom": {
+      "type": "text-section",
+      "settings": {
+        "background_image": "shopify://shop_images/background-image_8ac9d7c6-f802-4d80-9b86-83a43fe8be27.png",
+        "image_1": "shopify://shop_images/text-section-img1.jpg",
+        "image_2": "shopify://shop_images/text-section-img2.jpg",
+        "image_3": "shopify://shop_images/t.jpg",
+        "button_label_1": "<span style=\"color:#454545\">Your finger prints<br> are unique t</span>o you,<br> and so is your style.",
+        "button_label_2": "Opposable brings<br> unapologetic designs.<br> Bold, Fresh and Limited."
+      }
+    },
     "collection_list_gtD8iB": {
       "type": "collection-list",
       "blocks": {
@@ -42,22 +53,11 @@
         "image_ratio": "square",
         "columns_desktop": 2,
         "color_scheme": "",
-        "show_view_all": false,
+        "show_view_all": true,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "custom": {
-      "type": "text-section",
-      "settings": {
-        "background_image": "shopify://shop_images/background-image_8ac9d7c6-f802-4d80-9b86-83a43fe8be27.png",
-        "image_1": "shopify://shop_images/text-section-img1.jpg",
-        "image_2": "shopify://shop_images/text-section-img2.jpg",
-        "image_3": "shopify://shop_images/t.jpg",
-        "button_label_1": "Your finger prints<br> are unique t<span style=\"color:grey\">o you, <br>and so is your style. </span>",
-        "button_label_2": "<span style=\"color:grey\">Opposable brings <br>unapologetic designs. <br>Bold, Fresh and Limited.</span>"
       }
     },
     "collections_slider": {

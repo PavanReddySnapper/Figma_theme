@@ -39,6 +39,8 @@
     max-width:1800px !important;
     margin:0px auto ;
   }
+
+  
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }} collection-list-page">
@@ -121,7 +123,7 @@
           %}
         </aside>
       {%- endif -%}
-
+      
       <div
         class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         id="ProductGridContainer"
@@ -153,7 +155,7 @@
               data-id="{{ section.id }}"
               class="
                 grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-                grid--{{ section.settings.columns_desktop }}-col-desktop
+                grid--4-col-desktop
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
             >
@@ -199,6 +201,80 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const grid = document.getElementById('product-grid');
+    const columnOptions = document.querySelectorAll('.column-selector button');
+  
+    // Function to update the grid layout
+    function updateGridLayout(columns) {
+      // Remove all column classes
+      grid.classList.remove(
+        'grid--4-col-desktop',
+        'grid--2-col-desktop',
+        'grid--3-col-desktop'
+      );
+  
+      // Add the selected column class
+      if (columns === '4') {
+        grid.classList.add('grid--4-col-desktop');
+      } else if (columns === '2') {
+        grid.classList.add('grid--2-col-desktop');
+      } else if (columns === '3') {
+        grid.classList.add('grid--3-col-desktop');
+      }
+  
+      // Save preference to localStorage
+      localStorage.setItem('gridColumns', columns);
+    }
+  
+    // Function to highlight the active button
+    function highlightActiveButton(columns) {
+      // Reset all buttons to fill="none"
+      columnOptions.forEach((button) => {
+        const svg = button.querySelector('svg');
+        if (svg) {
+          svg.querySelectorAll('rect').forEach((rect) => {
+            rect.setAttribute('fill', 'none'); // Reset fill to none
+          });
+        }
+      });
+  
+      // Set fill="#0D0D0D" for the active button
+      const activeButton = document.querySelector(`.column-selector button[data-columns="${columns}"]`);
+      if (activeButton) {
+        const svg = activeButton.querySelector('svg');
+        if (svg) {
+          svg.querySelectorAll('rect').forEach((rect) => {
+            rect.setAttribute('fill', '#0D0D0D'); // Set fill to black
+          });
+        }
+      }
+    }
+  
+    // Set default columns to 4 and highlight the 4-column button
+    updateGridLayout('4');
+    highlightActiveButton('4');
+  
+    // Add click event listeners to buttons
+    columnOptions.forEach((button) => {
+      button.addEventListener('click', () => {
+        const columns = button.getAttribute('data-columns');
+        updateGridLayout(columns);
+        highlightActiveButton(columns); // Highlight the clicked button
+      });
+    });
+  
+    // Load saved preference on page load
+    const savedColumns = localStorage.getItem('gridColumns');
+    if (savedColumns) {
+      updateGridLayout(savedColumns);
+      highlightActiveButton(savedColumns); // Highlight the saved button
+    }
+  });
+  
+</script>
 
 {% schema %}
 {
